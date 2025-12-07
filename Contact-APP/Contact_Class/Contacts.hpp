@@ -14,6 +14,7 @@ private:
 
 public:
     //constructors
+    Contacts();
     Contacts(const std::string &first_name,
              const std::string &lastname,
              const std::string &phone_number,
@@ -28,6 +29,8 @@ public:
     std::string Get_Company()const;
     Contactgroup Get_Group()const;
 
+    //viewer
+    void Print_ContactData()const;
     //setters (for future imp if the contact are editable)
 
 

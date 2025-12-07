@@ -2,7 +2,12 @@
 
 
 //constructors & Destructors
-   Contacts::Contacts(const std::string &first_name,const std::string &lastname,const std::string &phone_number,const std::string &company_name,Contactgroup group):
+
+Contacts::Contacts()
+{
+    //do nothing
+}
+Contacts::Contacts(const std::string &first_name,const std::string &lastname,const std::string &phone_number,const std::string &company_name,Contactgroup group):
             Firstname(first_name),
             Lastname (lastname),
             Primary_number(phone_number),
@@ -36,6 +41,11 @@ std::string Contacts::Get_Company()const
 Contactgroup Contacts::Get_Group()const
 {
     return Mygroup;
+}
+
+void Contacts::Print_ContactData()const
+{
+    std::cout<<"Name : " << this->Firstname<<" "<<this->Lastname << "\n" <<"Phone number : "<<this->Primary_number<<"\n"<<"Company : "<<this->Company<<"\n"<<std::endl;
 }
 
 
