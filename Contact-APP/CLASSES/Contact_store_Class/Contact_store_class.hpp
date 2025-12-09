@@ -1,3 +1,6 @@
+#ifndef CONTACT_STORE_CLASS_HPP
+#define CONTACT_STORE_CLASS_HPP
+
 #include "./../Contact_Class/Contacts.hpp"
 #include <vector>
 #include <algorithm>
@@ -24,5 +27,15 @@ public:
 
     //sort Contacts
     void Sort_By_A_D_Name(bool orderFlag);
+
+    //Load contactse from phonebook file
+    void Load_all_contacts();
+
+    //save contacts to the phonebook file
+    void Save_all_contacts();
+    
 };
+
+#endif
+
 

@@ -1,4 +1,4 @@
-#include "Contacts.hpp"
+#include "./../../CLASSES/Contact_Class/Contacts.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -252,7 +252,7 @@ void test_destructor()
     print_result("Destructor called successfully (no crash)", true);
 }
 
-int main_test()
+int main_tested()
 {
     std::cout << "\n" << std::string(70, '*') << std::endl;
     std::cout << "        CONTACTS CLASS - COMPREHENSIVE TEST SUITE" << std::endl;

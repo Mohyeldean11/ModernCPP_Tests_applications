@@ -1,4 +1,4 @@
-#include "Contact_Class/Contacts.hpp"
+#include "CLASSES/Contact_Class/Contacts.hpp"
 
 int main()
 {

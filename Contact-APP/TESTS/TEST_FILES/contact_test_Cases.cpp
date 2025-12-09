@@ -1,4 +1,4 @@
-#include "Contacts.hpp"
+#include "./../../CLASSES/Contact_Class/Contacts.hpp"
 #include <iostream>
 #include <vector>
 #include <algorithm>

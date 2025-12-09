@@ -1,4 +1,4 @@
-#include "Contact_store_class.hpp"
+#include "./../../CLASSES/Contact_store_Class/Contact_store_class.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -385,7 +385,7 @@ void Test_Integration_Complete_Workflow() {
 }
 
 // ==================== MAIN TEST RUNNER ====================
-int main() {
+int main_tested() {
     std::cout << "\n" << std::string(70, '=') << std::endl;
     std::cout << "CONTACT STORE CLASS - COMPREHENSIVE TEST SUITE" << std::endl;
     std::cout << std::string(70, '=') << std::endl;
