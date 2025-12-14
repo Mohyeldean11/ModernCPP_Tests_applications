@@ -23,7 +23,7 @@ public:
 
     // Display phonebook
     void DisplayAll() const;
-    void DisplayByGroup(Contactgroup group) const;
+    void DisplayByGroup(const Contactgroup &&group) const;
 
     //sort Contacts
     void Sort_By_A_D_Name(bool orderFlag);

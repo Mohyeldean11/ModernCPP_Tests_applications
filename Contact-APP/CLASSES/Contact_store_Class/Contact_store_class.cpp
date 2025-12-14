@@ -2,9 +2,8 @@
 #include <sstream>
 #include <filesystem>
 #include <fstream>
-
 namespace fs = std::filesystem;
-const fs::path phonebook{std::move("./Contact-APP/utilities/Phonebook.csv")} ;
+const fs::path phonebook{std::move("/home/mohie/Desktop/cpp/ModernCPP_Tests_applications/Contact-APP/HELPERS/Phonebook.csv")} ;
 
 
 Contact_store_class::Contact_store_class()
@@ -86,7 +85,7 @@ void Contact_store_class::DisplayAll()const
 
 }
 
-void Contact_store_class::DisplayByGroup(Contactgroup group) const
+void Contact_store_class::DisplayByGroup(const Contactgroup &&group) const
 {
     std::cout << "==============================\n";
     std::cout << "Contacts in Group " << static_cast<int>(group) << ":\n";
@@ -153,6 +152,7 @@ void Contact_store_class::Load_all_contacts()
         std::cerr << "the file can't be loaded"<< e.what() << '\n';
     }
     std::string streamLine;
+    std::getline(File,streamLine);
     while (std::getline(File,streamLine))
     {
         Contacts Temp_contact;
@@ -205,9 +205,9 @@ void Contact_store_class::Save_all_contacts()
     {
         std::cerr << "the file can't be loaded"<< e.what() << '\n';
     }
+    File<<"FirstName,LastName,Phone,Company,Group\n";
     for(const auto &contact : Contact_Book)
     {
-        File <<'\n';
         File<< contact.Get_FirstName();
         File <<',';
         File<< contact.Get_LastName();
@@ -217,6 +217,7 @@ void Contact_store_class::Save_all_contacts()
         File<< contact.Get_Company();
         File <<',';
         File<< static_cast<int>(contact.Get_Group());
+        File<<'\n';
     }
     std::cout<<"file " <<phonebook<<  " is saved"<<std::endl;
 }

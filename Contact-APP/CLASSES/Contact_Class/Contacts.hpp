@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <string>
-
-enum class Contactgroup {DEFAULT=0,COWORKERS,FAMILY,FRIENDS};
+#include "./../Enums.hpp"
 
 class Contacts
 {

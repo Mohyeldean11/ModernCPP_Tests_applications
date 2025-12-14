@@ -1,6 +1,8 @@
-#include "CLASSES/Contact_Class/Contacts.hpp"
+#include "CLASSES/UI_Class/UI_Class.hpp"
 
 int main()
 {
-    return 0 ;
+    UI_Class ui;
+    ui.Operate();
+    return 0;
 }
