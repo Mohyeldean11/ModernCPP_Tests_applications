@@ -6,6 +6,8 @@
 #include <limits>
 #include <string>
 #include <sstream>
+#include <unordered_set>
+#include <array>
 using namespace std;
 class Solution {
 public:
@@ -292,6 +294,113 @@ public:
 };
 
 
+class Solution_container
+{
+public:
+    int maxArea(vector<int>& height) {
+        int area{0},leftwall{0};
+        int rightwall =height.size()-1;
+        while(leftwall < rightwall)
+        {
+            int y_axis = min(height[leftwall],height[rightwall]);
+            int x_axis = rightwall -leftwall;
+            int temparea = x_axis *y_axis;
+            area  = max(temparea, area);
+            if(height[leftwall] <height[rightwall])
+            {
+                ++leftwall;
+            }
+            else
+            {
+                --rightwall ;
+            }
+        }
+
+        return area;
+    }
+};
+
+class Solution_commonPrefix
+{
+public:
+    string longestCommonPrefix(vector<string>& strs)
+    {
+        if(strs.empty())
+        {
+            return "";
+        }
+        std::string firststring = strs[0];
+        for(int i=0 ; i <strs.size();i++)
+        {
+            while(strs[i].find(firststring))
+            {
+                // firststring = firststring.substr(0,firststring.size()-1);
+                firststring.pop_back();
+                if(firststring.empty())
+                {
+                    return "";
+                }
+            }
+        }
+        return firststring;
+    }
+};
+class Solution_reportspam {
+public:
+    // bool reportSpam(vector<string>& message, vector<string>& bannedWords)
+    // {
+    //     int counter{0};
+    //     while(!(message.empty()))
+    //     {
+    //         if(find(bannedWords.begin(),bannedWords.end(),message[message.size()-1]) != bannedWords.end())
+    //         {
+    //             counter++;
+    //         }
+    //         message.pop_back();
+    //         if(counter>=2)
+    //         {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+    bool reportSpam(vector<string>& message, vector<string>& bannedWords)
+    {
+        int count{0};
+        std::unordered_set<string> bannedset(bannedWords.begin(),bannedWords.end());
+        for(const auto &word : message)
+        {
+            if(bannedset.count(word) && ++count >=2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+};
+
+
+int max_of_four(int a, int b, int c, int d) 
+{
+    int max{};
+    std::array<int,4> array{a,b,c,d};
+    auto itr = max_element(array.begin(),array.end());
+    std::cout<< *(itr)<<std::endl;
+    for(auto &x : array)
+    {
+      max =  x > max ?  x : max ; 
+    }
+    return max;
+}
+void manipulate(int *a , int *b)
+{
+    int temp{};
+    temp = *(a) + *(b);
+    *(b) = abs(*(a) - *(b));
+    *a = temp;
+}   
+
 int main()
 {
     // Create a dynamic array using new. Example: allocate 5 ints.
@@ -313,7 +422,20 @@ int main()
     // cout << myatoi_dummy.myAtoi_map("-042");
     // Solution Trial;
     // cout <<Trial.areNumbersAscending("hello world 5 x 5");
-    Solution sol;
-    sol.areNumbersAscending("hello 55 hello 55");
+    // Solution sol;
+    // sol.areNumbersAscending("hello 55 hello 55");
+    // Solution_container S1;
+    // std::vector<int> Test{1,1};
+    // std::cout<<'\n';
+    // std::cout<< S1.maxArea(Test)<<std::endl;
+    
+    //std::cout<< max_of_four(1,4,62,212);
+    // int *a = new int();
+    // int *b = new int();  
+    // std::cin>> *(a)>>*(b);
+    // manipulate(a,b);
+    // std::cout<<a<<endl;
+    // std::cout<<b<<endl;
+    
     return 0;
 }
