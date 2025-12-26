@@ -8,7 +8,10 @@
 #include <sstream>
 #include <unordered_set>
 #include <array>
+#include <format>
+#include <memory>
 using namespace std;
+std::array<int,5> mohy{1,2,5,4,67};
 class Solution {
 public:
        bool areNumbersAscending(string s) 
@@ -225,7 +228,68 @@ public:
     }
 };
 
+class student
+{
+private:
+    std::string First_name;
+    std::string Last_name;
+    int age,standard;
+public:
+    student();
+    ~student();
+    void set_age(int &objage);
+    void set_Firstname(std::string &name);
+    void set_Lastname(std::string &name);
+    void set_stand(int &stdrd);
+    int getage()const;
+    int getstand()const;
+    std::string getfirst()const;
+    std::string getlast()const;
+    std::string to_string();
 
+};
+student::student()
+{}
+student::~student()
+{}
+int student::getage()const
+{
+    return this->age;
+}
+void student::set_age(int &objage)
+{
+    age = objage;
+}   
+void student::set_stand(int &stdrd)
+{
+    standard = stdrd;
+}
+int student::getstand()const
+{
+    return this->standard;
+}
+void student::set_Firstname(std::string &name)
+{
+    First_name = name;
+}
+void student::set_Lastname(std::string &name)
+{
+    Last_name = name;
+}
+std::string student::getfirst()const
+{
+    return this->First_name;
+}
+std::string student::getlast()const
+{
+    return this->Last_name;
+}
+std::string student::to_string()
+{
+     
+    return std::to_string(this->age) + ','+ this->First_name +','+ this->Last_name + ','+ std::to_string(this->standard);
+    // return std::format("{},{},{},{}",age,First_name,Last_name,standard);
+}
 //Definition for singly-linked list.
 struct ListNode {
     int val;
@@ -400,6 +464,251 @@ void manipulate(int *a , int *b)
     *(b) = abs(*(a) - *(b));
     *a = temp;
 }   
+void variable_sized_queries()
+{
+       int vectormembers{},quernum{};
+    std::vector<std::vector<int>> bigVEC{};
+    std::cin>>vectormembers>>quernum;
+    for(int rows =0 ;rows<vectormembers; rows++)
+    {
+        int ColumnNum{};
+        std::cin>>ColumnNum;
+        std::vector<int> tempvector;        
+        for(int columns = 0 ; columns< ColumnNum ; columns++)
+        {
+            int temp{};
+            std::cin>>temp;
+            tempvector.push_back(temp);
+            
+        }
+        bigVEC.push_back(tempvector);
+    }
+    for(int que = 0 ; que<quernum ; que++)
+    {
+        int row,col;
+        std::cin>>row>>col;
+        std::cout<<bigVEC[row][col]<<std::endl;
+    }
+    for(auto x :bigVEC)
+    {
+        for(auto y : x)
+        {
+            std::cout<<y<<',';
+        }
+        std::cout<<'\n';
+    }
+}
+
+struct Workshop{
+    int starttime = 0 , duration = 0, endtime = 0;
+    
+    Workshop(int _startime, int _duration){
+        starttime = _startime;
+        duration = _duration;
+        endtime = _startime + _duration;
+    }
+    
+};
+
+struct Available_Workshops{
+    int len = 0;
+    vector<Workshop> workshops;
+    
+    Available_Workshops(int _len, vector<Workshop> _workshops){
+        len=_len;
+        workshops=_workshops;
+    }
+
+};
+
+Available_Workshops* initialize(int* startime, int* duration, int n){
+    vector<Workshop> workshops;
+        
+    for (int i = 0; i<n; i++) {
+        workshops.emplace_back(startime[i], duration[i]);      
+    }
+        
+    return new Available_Workshops(n, workshops);
+}
+
+int CalculateMaxWorkshops(Available_Workshops* ptr){
+    int current_end = 0, scheduled = 0;
+
+    vector<Workshop> workshops = ptr->workshops;
+    
+    sort(workshops.begin(), workshops.end(), [](const Workshop& a, const Workshop& b) {
+        return a.endtime < b.endtime;
+    });
+    
+    for (Workshop& w : workshops){
+        if (w.starttime >= current_end) {
+            scheduled++;
+            current_end = w.endtime;
+        }
+    }
+    
+    return scheduled;
+}
+class Solutio_ndups {
+public:
+    std::vector<int> removeDuplicates(vector<int>& nums)
+    {
+        std::vector<int> resultV;
+        auto itr = nums.begin();
+        while(itr!= nums.end() && itr <nums.end())
+        {
+            if(*itr == *(itr+1))
+            {
+            }
+            else
+            {
+                resultV.push_back(*itr);
+            }
+            itr +=1;
+
+        }
+        return resultV;
+    }
+};
+class SolutionRemdup {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        
+        int k = 1; // Position to place the next unique element
+        
+        for (int i = 1; i < nums.size(); i++)
+        {
+            if (nums[i] != nums[i-1])
+            {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        
+        return k;
+    }
+};
+
+class Solution_dups {
+public:
+    int getOnlyDups(vector<int>& nums)
+    {
+        std::vector<int> resultV;
+        for(auto x :nums)
+        {
+            auto itr = std::find(nums.begin(),nums.end(),x);
+            if(itr!= nums.end())
+            {
+                if(std::find(itr+1,nums.end(),x)!= nums.end())
+                {
+                    resultV.push_back(x);
+                }
+                else
+                {
+                }
+            }
+        }
+     
+        return resultV.size();
+    }
+};
+
+class Solution_otherdup
+{
+public:
+    int removeElement(vector<int>& nums, int val)
+    {
+        int count = 0;
+        for(int i=0; i< nums.size(); ++i)
+        {
+            if(nums[i]!= val)
+            {
+                nums[count] = nums[i];
+                count++;
+            }
+            else
+            {
+                //pass
+            }
+        }   
+       
+    }
+};
+
+class Person{
+protected:
+    std::string name;
+    int age;
+public:
+    Person(){}
+    virtual ~Person(){}  // Virtual destructor for base class!
+    virtual void putdata() const = 0;
+    virtual void getdata() = 0;
+};
+
+class Professor: public Person{
+private:
+    int publications;
+    int cur_id;
+    static int Professor_sequentialid;
+public:
+    Professor()
+    {
+        cur_id = ++Professor_sequentialid;  // Assign unique ID
+    }
+    
+    void putdata() const override 
+    {
+        std::cout << name << ' ' << age << ' ' << publications << ' ' << cur_id << std::endl;
+    }
+    
+    void getdata() override
+    {
+        std::cin >> name >> age >> publications;
+    }
+};
+
+class Student: public Person{
+private:
+    int cur_id;
+    int* marks;
+    static int Student_sequentialid;
+public:
+    Student()
+    {
+        cur_id = ++Student_sequentialid;  // Assign unique ID
+        marks = new int[6];
+    }
+    
+    ~Student()
+    {
+        delete[] marks;  // Clean up memory
+    }
+    
+    void putdata() const override
+    {
+        int marksum = 0;
+        for(int i = 0; i < 6; ++i)
+        {
+            marksum += marks[i];
+        }
+        std::cout << name << ' ' << age << ' ' << marksum << ' ' << cur_id << std::endl;
+    }
+    
+    void getdata() override
+    {
+        std::cin >> name >> age;
+        for(int i = 0; i < 6; ++i)
+        {
+            std::cin >> marks[i];
+        }
+    }
+};
+
+// MUST define static variables
+int Professor::Professor_sequentialid = 0;
+int Student::Student_sequentialid = 0;
 
 int main()
 {
@@ -427,8 +736,7 @@ int main()
     // Solution_container S1;
     // std::vector<int> Test{1,1};
     // std::cout<<'\n';
-    // std::cout<< S1.maxArea(Test)<<std::endl;
-    
+    // std::cout<< S1.maxArea(Test)<<std::endl;   
     //std::cout<< max_of_four(1,4,62,212);
     // int *a = new int();
     // int *b = new int();  
@@ -436,6 +744,53 @@ int main()
     // manipulate(a,b);
     // std::cout<<a<<endl;
     // std::cout<<b<<endl;
-    
+    // for(auto x: mohy)
+    // {
+    //     std::cout<<x<<'\n';
+    // }
+    // workshop *Workshops = new workshop[arrsize];
+    // int n; // number of workshops
+    // cin >> n;
+    // // create arrays of unknown size n
+    // int* start_time = new int[n];
+    // int* duration = new int[n];
+
+    // for(int i=0; i < n; i++){
+    //     cin >> start_time[i];
+    // }
+    // for(int i = 0; i < n; i++){
+    //     cin >> duration[i];
+    // }
+
+    // Available_Workshops * ptr;
+    // ptr = initialize(start_time,duration, n);
+    // cout << CalculateMaxWorkshops(ptr) << endl;
+    // Solutio_ndups n1;
+    // std::vector<int> DummyVec{1,1,2,3,3,5};
+    // for(auto x :n1.removeDuplicates(DummyVec))
+    // {
+    //     std::cout << x <<'\t';
+    // }
+    int n, val;
+    cin>>n; //The number of objects that is going to be created.
+    Person *per[n];
+
+    for(int i = 0;i < n;i++){
+
+        cin>>val;
+        if(val == 1){
+            // If val is 1 current object is of type Professor
+            per[i] = new Professor;
+
+        }
+        else per[i] = new Student; // Else the current object is of type Student
+
+        per[i]->getdata(); // Get the data from the user.
+
+    }
+
+    for(int i=0;i<n;i++)
+        per[i]->putdata(); // Print the required output for each object.
+
     return 0;
 }
