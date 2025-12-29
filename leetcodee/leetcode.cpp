@@ -632,7 +632,7 @@ public:
                 //pass
             }
         }   
-       
+       return count;
     }
 };
 
@@ -710,6 +710,39 @@ public:
 int Professor::Professor_sequentialid = 0;
 int Student::Student_sequentialid = 0;
 
+
+
+vector<int> parseInts(string str) {
+	// Complete this function
+    std::vector<int> res;
+    stringstream ss(str);
+    int token;
+    char delim;
+    while(ss>>token)
+    {
+        res.push_back(token);
+        ss>>delim;
+    }
+    
+ 
+    return res;
+}
+
+class Solution_firstoccurence {
+public:
+    int strStr(string haystack, string needle)
+    {
+        if(haystack.size() ==0)
+            return 0;   
+        
+        auto itr = haystack.find(needle);
+        if(itr == haystack.size())
+        {
+            return -1;
+        }
+        return itr;
+    }
+};
 int main()
 {
     // Create a dynamic array using new. Example: allocate 5 ints.
@@ -754,14 +787,12 @@ int main()
     // // create arrays of unknown size n
     // int* start_time = new int[n];
     // int* duration = new int[n];
-
     // for(int i=0; i < n; i++){
     //     cin >> start_time[i];
     // }
     // for(int i = 0; i < n; i++){
     //     cin >> duration[i];
     // }
-
     // Available_Workshops * ptr;
     // ptr = initialize(start_time,duration, n);
     // cout << CalculateMaxWorkshops(ptr) << endl;
@@ -771,26 +802,22 @@ int main()
     // {
     //     std::cout << x <<'\t';
     // }
-    int n, val;
-    cin>>n; //The number of objects that is going to be created.
-    Person *per[n];
-
-    for(int i = 0;i < n;i++){
-
-        cin>>val;
-        if(val == 1){
-            // If val is 1 current object is of type Professor
-            per[i] = new Professor;
-
-        }
-        else per[i] = new Student; // Else the current object is of type Student
-
-        per[i]->getdata(); // Get the data from the user.
-
-    }
-
-    for(int i=0;i<n;i++)
-        per[i]->putdata(); // Print the required output for each object.
-
+    // int n, val;
+    // cin>>n; //The number of objects that is going to be created.
+    // Person *per[n];
+    // for(int i = 0;i < n;i++){
+    //     cin>>val;
+    //     if(val == 1){
+    //         // If val is 1 current object is of type Professor
+    //         per[i] = new Professor;
+    //     }
+    //     else per[i] = new Student; // Else the current object is of type Student
+    //     per[i]->getdata(); // Get the data from the user.
+    // }
+    // for(int i=0;i<n;i++)
+    //     per[i]->putdata(); // Print the required output for each object.
+    Solution_firstoccurence M1;
+    std::string haystack = "wlahybut",needle = "sad";
+    std::cout<<M1.strStr(haystack,needle);
     return 0;
 }
