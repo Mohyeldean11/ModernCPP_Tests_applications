@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <map>
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
@@ -10,6 +11,7 @@
 #include <array>
 #include <format>
 #include <memory>
+#include <list>
 using namespace std;
 std::array<int,5> mohy{1,2,5,4,67};
 class Solution {
@@ -743,6 +745,529 @@ public:
         return itr;
     }
 };
+
+class Solution_searchinsert {
+public:
+    int searchInsert(vector<int>& nums, int target) 
+    {
+        auto itr = find(nums.begin(),nums.end(),target);
+        int count{0};
+        if(itr!=nums.end())
+        {
+            return distance(nums.begin(), itr);
+        }
+        else
+        {
+            for(auto x : nums)
+            {
+                if(x>=target)
+                {
+                    return count;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+        }
+        return nums.size();
+    }
+};
+class Solution_lastword {
+public:
+    int lengthOfLastWord(string s)
+    {
+        // std::vector<std::string> stringvec;
+        // auto itr = s.begin();
+        std::stringstream ss(s);
+        std::string token;
+        while(ss>>token);
+        // {
+        //     stringvec.push_back(token);
+        // }
+        // return stringvec[stringvec.size()-1].size();
+        return token.size();
+    }
+        int lengthOfLastWordbasic_C(string s) {
+        int size=s.size()-1;
+        int count=0;
+
+        for(int i=size; i>=0; i--){
+            if(s[i]==' ' && count>0){
+                return count;
+            }
+            else if(s[i]!=' '){
+                count++;
+            }
+        }
+        return count;
+    }
+};
+class Vectors
+{
+public:    
+    int sort_vector() 
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+        std::vector<int> Vec;
+        int x;
+        std::cin>>x;
+        for(int i=0;i<x;i++)
+        {
+            int temp;
+            std::cin>>temp;
+            Vec.push_back(temp);
+        }
+        std::sort(Vec.begin(),Vec.end(),[&](int a, int b){
+            return a < b;
+        });
+        for(const auto &X: Vec)
+        {
+            std::cout <<X<<" ";
+        }
+    
+        return 0;
+    }
+    int remove_vector()
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+        int Vecsize = 0;
+        std::cin>>Vecsize;
+        std::vector<int> Vec;
+        for(int i=0;i<Vecsize;i++)
+        {
+            int temp;
+            std::cin>>temp;
+            Vec.push_back(temp);
+        }
+        int single,begin,end;
+        std::cin>>single>>begin>>end;
+        Vec.erase(Vec.begin()+single-1);
+        Vec.erase(Vec.begin()+begin-1,Vec.begin()+end-1);
+        std::cout<<Vec.size()<<"\n";
+        for(const auto &x :Vec)
+        {
+            std::cout<<x<<" ";
+        }
+        return 0;
+    }
+
+};
+class Rectangle
+{
+protected:
+    int m_width, m_height;
+
+public:
+    virtual void display()
+    {
+        cout << m_width << " " << m_height << endl;
+    }
+};
+
+class RectangleArea : public Rectangle
+{
+
+public:
+    void read_input()
+    {
+        cin >> m_width >> m_height;
+    }
+    void display() override
+    {
+        cout << m_width * m_height;
+    }
+};
+
+class Solution_plusone {
+public:
+    vector<int> plusOne_std_solutions(vector<int>& digits)
+    {
+        long long number{0};
+        std::vector<int> res;
+        for(int i = 0 ; i< digits.size();i++)
+        {
+            number += digits[i] * pow(10,digits.size()-1-i);
+        }
+        number++;
+        while(number>0)
+        {
+            res.emplace_back(number%10);
+            number= number/10;
+        }
+        for(int i=0; i<res.size()/2; i++)
+        {
+            int temp = res[i];
+            res[i] = res[res.size()-1-i];
+            res[res.size()-1-i] = temp;
+        }
+        for(auto x : res)
+        {
+            std::cout<< x << " ";
+        }
+        return res;
+    }
+    vector<int> plusOne(vector<int>& digits)
+    {
+        int size = digits.size();
+        for(int i = size-1 ; i>=0;i--)
+        {
+            if(digits[i] <9)
+            {
+                digits[i] ++;
+                return digits;
+            }
+            digits[i]=0;
+
+        }
+        digits.insert(digits.begin(),1);
+        return digits;
+    }
+};
+
+class Solutionmysqrt {
+public:
+    int mySqrt(int x) {
+        if(x==0 || x==1) return x;
+        int left = 1, right = x /2;
+        while(left<=right)
+        {
+            int middle = left + (right-left)/2;
+
+            if(middle==x/middle)
+                return middle;
+            else if(middle < x/middle)
+                left = middle+1;
+            else
+                right = middle - 1;
+        }
+        return right;
+    }
+};
+class SolutionSUMFOURDIVISORS {
+public:
+    int sumFourDivisors(vector<int>& nums)
+    {
+        int sum{},count{},res{};
+        for(auto x : nums)
+        {
+            int target = x;
+            while(target >=1)
+            {
+                if(x%target == 0)
+                {
+                    sum+=target;
+                    count++;
+
+                }
+                if(count>4) break;
+                target--;
+
+            }
+            if(!(count > 4 || count <4) )
+            {
+                // std::cout<<"number is : " << x << "and its sum now is : "<<sum <<std::endl;
+                res+=sum;
+            }
+            sum=0;
+            count=0;
+        }
+        return res;
+    }
+    
+};
+
+//importantttt
+class Solution_bin {
+public:
+    string addBinary(string a, string b) {
+        string result = "";
+        int carry = 0;
+        int i = a.length() - 1, j = b.length() - 1;
+        
+        while (i >= 0 || j >= 0 || carry) {
+            int bitA = (i >= 0) ? a[i--] - '0' : 0;
+            int bitB = (j >= 0) ? b[j--] - '0' : 0;
+            
+            int sum = bitA + bitB + carry;
+            result += (sum % 2) + '0';
+            carry = sum / 2;
+        }
+        
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};
+//LRU QUEST
+class LRUCache_vector {
+private: 
+    int cap{},maxcap;
+    std::vector<std::array<int,3>> LRUCASH;
+    
+public:
+    LRUCache_vector(int capacity) 
+    {
+        maxcap= capacity;        
+    }
+    
+    int get(int key)
+    {
+        for(auto &x : LRUCASH)
+        {
+            if(x[0] == key)
+            {
+                x[2]++;
+                return x[1];
+            }
+        }
+        return -1;
+    }
+    
+    void put(int key, int value)
+    {
+        if(cap<maxcap)
+        {
+            std::array temp{key,value,0};
+            LRUCASH.emplace_back(temp);
+        }
+        else
+        {
+            int min= LRUCASH[0][2];
+            int min_itr{};
+            for(int i = 0 ; i<maxcap; i++)
+            {
+                if(LRUCASH[i][2]<min)
+                {
+                    min = LRUCASH[i][2];
+                    min_itr = i;
+                }
+            }
+            LRUCASH[min_itr][0] = key;
+            LRUCASH[min_itr][1] = value;
+            LRUCASH[min_itr][2] = 0;
+        }
+    }
+};
+
+
+class LRUCache {
+private:
+    int capacity;
+    // Doubly-linked list: front=MRU, back=LRU
+    std::list<pair<int, int>> cache;
+    // Hash map: key → iterator to list position
+    unordered_map<int, std::list<pair<int, int>>::iterator> map;
+    
+public:
+    LRUCache(int capacity) : capacity(capacity) {}
+    
+    int get(int key)
+    {
+        // O(1): Check if key exists
+        if (map.find(key) == map.end())
+        {
+            return -1;
+        }
+        
+        // O(1): Get iterator and value
+        auto it = map[key];
+        int value = it->second;
+        
+        // O(1): Remove from current position
+        cache.erase(it);
+        
+        // O(1): Move to front (mark as MRU)
+        cache.push_front({key, value});
+        
+        // O(1): Update iterator in map
+        map[key] = cache.begin();
+        
+        return value;
+    }
+    
+    void put(int key, int value)
+    {
+        // Case 1: Key already exists
+        if (map.find(key) != map.end())
+        {
+            // O(1): Remove old entry
+            cache.erase(map[key]);
+        }
+        // Case 2: Cache is full and key is new
+        else if (cache.size() == capacity)
+        {
+            // O(1): Get LRU key (back of list)
+            int lruKey = cache.back().first;
+            // O(1): Remove LRU from list
+            cache.pop_back();
+            // O(1): Remove LRU from map
+            map.erase(lruKey);
+        }
+        
+        // O(1): Add new entry to front (MRU position)
+        cache.push_front({key, value});
+        
+        // O(1): Store iterator in map
+        map[key] = cache.begin();
+    }
+};
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+
+class Solution_merge {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+    {
+       if(m == 0 && n !=0)
+       {
+            nums1 = nums2;
+       }
+       int size = m+n;
+       int count1{0} , count2{0};
+       auto itr1 = nums1.begin();
+       auto itr2 = nums2.begin();
+       while(count2 <n)
+       {
+            
+            if(nums1[count1] < nums2[count2] && nums1[count1]!= 0)
+            {
+                count1++;
+            }
+            else if(nums1[count1]  >= nums2[count2] || nums1[count1] == 0)
+            {
+                nums1.insert(nums1.begin()+count1,nums2[count2]);
+                count2++;
+            }
+          
+       }
+    }
+};
+class stack_LIFO
+{
+private:
+    int size;
+    int* stack = new int[size];
+    int stackptr{};
+public:
+    stack_LIFO(int usersize):size(usersize){}
+
+    bool push(int var)
+    {
+        if(stackptr ==size-1)
+        {
+            std::cout<<"stack is full"<<std::endl;
+            return 1;
+        }
+        stack[stackptr] = var;
+        stackptr++;
+        return 0;
+    }
+
+    bool pop()
+    {
+        if(stackptr == 0)
+        {
+            std::cout<<"stack is empty"<<endl;
+            return 1;
+        }
+        stackptr--;
+        return 0;
+    }
+    
+    void view_stack()
+    {
+        for(int i=0; i<stackptr; i++)
+        {
+            std::cout<<stack[i]<<" , ";
+        }
+        std::cout<<"\n";
+    }
+};
+class linkedlist
+{
+private:
+    /* data */
+    struct node
+    {
+        int x ; 
+        node * next;
+    };
+    node *head ;
+public:
+    linkedlist()
+    {
+        head = NULL;
+    }
+    void add_node(int value)
+    {
+        node *new_node = new node;
+        new_node->x = value;
+        new_node->next = head;
+        head = new_node;
+    }
+    int pop()
+    {
+        node *ptr = head;
+        int ret = ptr->x;
+        head = head->next;
+        delete ptr;
+        return ret;
+    }
+    ~linkedlist(){
+        node *next= head;
+        while (next)
+        {
+            node *delet = next;
+            next->next;
+            delete delet;
+        }
+        
+    }
+};
+
+class Qeue
+{
+private:
+
+public:
+};
+
+
+class Solution_mediansorted {
+public:
+    double findMedianSortedArrays(vector<int>& nums1,vector<int>& nums2)
+    {
+        
+        double result{0};
+        nums1.insert(nums1.end(),nums2.begin(),nums2.end());
+        sort(nums1.begin(),nums1.end());
+        // for(auto x : nums1)
+        // {
+        //     cout<< x<<",";
+        // }
+        // if(nums1.size() % 2 == 0)
+        // {
+        //     result =  ((static_cast<double>(nums1[nums1.size()/2])) + (static_cast<double>(nums1[(nums1.size()/2)-1])))/2; 
+        //     return result;
+        // }
+        (nums1.size()%2 ==0) ?  result =  ((static_cast<double>(nums1[nums1.size()/2])) + (static_cast<double>(nums1[(nums1.size()/2)-1])))/2 : result = nums1[nums1.size()/2]; 
+        // else
+        // {
+        //     result = nums1[nums1.size()/2]; 
+        //     return result;
+
+        // }
+        // // std::cout << nums1 << std::endl;
+        // cout<<" '\n' the median is = ";
+        return   result;
+        
+    }
+};
+
 int main()
 {
     // Create a dynamic array using new. Example: allocate 5 ints.
@@ -816,8 +1341,49 @@ int main()
     // }
     // for(int i=0;i<n;i++)
     //     per[i]->putdata(); // Print the required output for each object.
-    Solution_firstoccurence M1;
-    std::string haystack = "wlahybut",needle = "sad";
-    std::cout<<M1.strStr(haystack,needle);
+    // Solution_firstoccurence M1;
+    // std::string haystack = "wlahybut",needle = "sad";
+    // std::cout<<M1.strStr(haystack,needle);
+    // Solution_lastword test;
+    // std::cout<< test.lengthOfLastWord("luffy is still joyboy")<<std::endl;  
+    // Solution_plusone M1;
+    // std::vector<int> test{1,2,3,4,6};
+    // M1.plusOne_std_solutions(test);
+    // M1.plusOne(test);
+    // Solutionmysqrt s1 ;
+    // std::cout<<s1.mySqrt(2147395600)<<std::endl;
+    // SolutionSUMFOURDIVISORS m1;
+    // std::vector<int> mohy{7286,18704,70773,8224,91675};
+    // std::cout<<m1.sumFourDivisors(mohy);
+    // std::vector<int> n1{1,2,3,0,0,0};
+    // std::vector<int> n2{2,5,6};
+    // Solution_merge M1;
+    // M1.merge(n1,3,n2,3);
+    // // auto itr = n1.begin();
+    // // std::cout<< &itr<< " value: " << *itr<<endl;
+    // // itr++;
+    // // std::cout<< &itr<< " value: " << *itr<<endl;
+    // // n1.insert(itr,7);
+    // for(auto x : n1)
+    // {
+    //     std::cout<< x << ',';
+    // }
+    // stack_LIFO mystack(10);
+    // mystack.push(2);
+    // mystack.push(5);
+    // mystack.push(3);
+    // mystack.push(1);
+    // mystack.push(4);
+    // mystack.push(76);
+    // mystack.push(2);
+    // mystack.push(1);
+    // mystack.view_stack(); //2,5,3,1,4,76,2,1
+    // mystack.pop(); 
+    // mystack.push(23);
+    // mystack.view_stack();  //2,5,3,1,4,76,2,23
+    // mystack.pop();
+    // mystack.view_stack();  //2,5,3,1,4,76,2
+
+
     return 0;
 }
