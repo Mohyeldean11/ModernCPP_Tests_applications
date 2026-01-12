@@ -1268,6 +1268,84 @@ public:
     }
 };
 
+using compare = bool(*)(int , int);
+bool DSC_compar_fun(int x , int y)
+{
+    return x<y;
+}
+bool ASC_compar_fun(int x , int y)
+{
+    return x>y;
+}
+
+struct DSCcomparator
+{
+    bool operator() (int x, int y)
+    {
+        return x<y;
+    }
+    
+};
+
+auto lambda_ASCComp = [](int x , int y){return x>y;};
+auto lambda_DSCComp = [](int x , int y){return x<y;};
+
+template<typename T , int size , typename compare>
+void sort_templated(T(&ARR)[size],compare comp)
+{
+    for(int i = 0 ; i < size ; i++)
+    {
+        for(int j = 0 ; j < size-i-1;j++)
+        {
+            if(comp(ARR[j],ARR[j+1]))
+            {
+                int temp = std::move(ARR[j]);
+                ARR[j]= std::move(ARR[j+1]);
+                ARR[j+1]= std::move(temp);
+            }
+        }
+    }
+}
+
+
+namespace mymathfunction
+{
+    int john_add(int x , int y){return  x+y;};
+}
+
+struct functor_add5
+{
+    int operator() (int &x)
+    {
+        return x+=5;
+    }
+};
+template<typename T>
+using operation = void(*)(T&); //void  add_mohy5(int &x)
+
+void john(std::vector<int> &x , operation<int> operate)
+{
+    for(auto &i : x)
+    {
+        operate(i);
+    }
+}
+template<typename T,typename operation>
+void actoneach(T (&vec), operation ope)
+{
+    for(auto &x : vec)
+    {
+        ope(x);
+    }
+}
+void  add_mohy5(int &x)
+{
+    x +=5;
+}
+
+auto add5 = [](int &x){ return x+=5;};
+
+auto printvec = [](int x){std::cout <<x<<',';};
 int main()
 {
     // Create a dynamic array using new. Example: allocate 5 ints.
@@ -1383,7 +1461,43 @@ int main()
     // mystack.view_stack();  //2,5,3,1,4,76,2,23
     // mystack.pop();
     // mystack.view_stack();  //2,5,3,1,4,76,2
-
+    // compare compmoh = ASC_compar_fun;
+    // // std::array<int,15> targetarr{154,22,1,234,53,12,2};
+    // int moarr[]{2,43,2,1,6,0,11,87,98};
+    // sort_templated(moarr,compmoh);
+    // for(auto x : moarr)
+    // {
+    //     std::cout<< x << " , ";
+    // }
+    // std::cout<<"\n";
+    // sort_templated(moarr,DSCcomparator());
+    // for(auto x : moarr)
+    // {
+    //     std::cout<< x << " , ";
+    // }
+    // sort_templated(moarr,lambda_ASCComp);
+    // std::cout<<"\n";
+    // for(auto x : moarr)
+    // {
+    //     std::cout<< x << " , ";
+    // }
+    // std::move(vector[1,2,3...]) --> john
+    //memory space only for johnvec
+    // float z=23.2;
+    // int x{static_cast<int>(z)};
+    // std::cout <<x<<"\n";
+    // std::vector<int> johnvec{1,2,3,4,5,6,7,8,9,10};
+    // actoneach(johnvec,add5);
+    // actoneach(johnvec,printvec);
+    // actoneach(johnvec ,functor_add5());
+    // std::cout<<'\n';
+    // actoneach(johnvec,printvec);
+    // actoneach(johnvec,add_mohy5);
+    // std::cout<<'\n';
+    // actoneach(johnvec,printvec);
+    // john(johnvec,add_mohy5);
+    // std::cout<<'\n';
+    // actoneach(johnvec,printvec);
 
     return 0;
 }
