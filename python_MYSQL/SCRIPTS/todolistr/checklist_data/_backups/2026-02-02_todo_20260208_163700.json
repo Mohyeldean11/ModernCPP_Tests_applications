@@ -1,0 +1,35 @@
+[
+  {
+    "id": "task-1770564889890",
+    "title": "3 KAPITAL",
+    "hours": 1.0,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 0,
+    "tag": "",
+    "priority": "High"
+  },
+  {
+    "id": "task-1770564919635",
+    "title": "LISTENING",
+    "hours": 0.25,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 1,
+    "tag": "",
+    "priority": "High"
+  },
+  {
+    "id": "task-1770564932301",
+    "title": "SPEAKING",
+    "hours": 0.25,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 2,
+    "tag": "",
+    "priority": "High"
+  }
+]

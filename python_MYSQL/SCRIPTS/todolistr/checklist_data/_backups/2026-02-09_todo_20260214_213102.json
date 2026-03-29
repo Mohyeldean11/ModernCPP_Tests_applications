@@ -1,0 +1,24 @@
+[
+  {
+    "id": "task-1770666374810-0",
+    "title": "3 KAPITAL",
+    "hours": 1.0,
+    "day": "2026-02-15",
+    "completed": false,
+    "completed_at": null,
+    "order": 0,
+    "tag": "",
+    "priority": "High"
+  },
+  {
+    "id": "task-1770666374810-2",
+    "title": "SPEAKING",
+    "hours": 0.25,
+    "day": "2026-02-15",
+    "completed": false,
+    "completed_at": null,
+    "order": 1,
+    "tag": "",
+    "priority": "High"
+  }
+]

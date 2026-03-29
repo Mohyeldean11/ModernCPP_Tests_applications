@@ -1,0 +1,29 @@
+[
+  {
+    "id": "pomo-1770557538958",
+    "started_at": "2026-02-08T14:32:18.958840",
+    "date": "2026-02-08",
+    "week_key": "2026-02-02",
+    "preset": "Deep Work 50/10",
+    "focus_minutes": 50,
+    "completed": false
+  },
+  {
+    "id": "pomo-1770557545581",
+    "started_at": "2026-02-08T14:32:25.581546",
+    "date": "2026-02-08",
+    "week_key": "2026-02-02",
+    "preset": "Deep Work 50/10",
+    "focus_minutes": 50,
+    "completed": false
+  },
+  {
+    "id": "pomo-1770560366351",
+    "started_at": "2026-02-08T15:19:26.351038",
+    "date": "2026-02-08",
+    "week_key": "2026-02-02",
+    "preset": "Deep Work 50/10",
+    "focus_minutes": 50,
+    "completed": false
+  }
+]

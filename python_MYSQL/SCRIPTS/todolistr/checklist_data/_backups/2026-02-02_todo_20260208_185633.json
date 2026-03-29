@@ -1,0 +1,35 @@
+[
+  {
+    "id": "task-1770564831241",
+    "title": "RECAP ON NETWORKING ENGINEERING",
+    "hours": 1.0,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 0,
+    "tag": "",
+    "priority": "High"
+  },
+  {
+    "id": "task-1770564793823",
+    "title": "WORK ON THE  API SCRIPT",
+    "hours": 1.0,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 2,
+    "tag": "",
+    "priority": "Medium"
+  },
+  {
+    "id": "task-1770564811996",
+    "title": "UNDERSTAND REST APIS AND HOW TO CALL APIS AND USE THEM",
+    "hours": 1.0,
+    "day": "2026-02-08",
+    "completed": false,
+    "completed_at": null,
+    "order": 3,
+    "tag": "",
+    "priority": "High"
+  }
+]

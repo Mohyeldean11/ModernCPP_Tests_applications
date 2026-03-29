@@ -1,0 +1,13 @@
+[
+  {
+    "id": "task-1770557130063",
+    "title": "Lect 1",
+    "hours": 1.0,
+    "day": "2026-02-08",
+    "completed": true,
+    "completed_at": "2026-02-08T15:35:43.551113",
+    "order": 0,
+    "tag": "",
+    "priority": "Medium"
+  }
+]
