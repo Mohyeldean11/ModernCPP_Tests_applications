@@ -1499,5 +1499,17 @@ int main()
     // std::cout<<'\n';
     // actoneach(johnvec,printvec);
 
+    int x{};
+    std::cout<<"this is X: "<<x<<'\n';
+    std::cout<<"this is the addresses of x : "<<&x<<"\n";
+    int *p = &x;
+    // int &mohy =28;
+
+    std::cout<<"this is X: "<<x<<'\n';
+    std::cout<<"this is the addresses of x : "<<&x<<"\n";
+    std::cout<<"this is the addresses of mohy : "<<std::move(&mohy)<<"\n";
+    std::cout<<"this is the addresses of mohy : "<<&mohy<<"\n";
+
+
     return 0;
 }
